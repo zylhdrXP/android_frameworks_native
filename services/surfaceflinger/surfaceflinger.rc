@@ -1,7 +1,11 @@
 service surfaceflinger /system/bin/surfaceflinger
     class core animation
     user system
-    group graphics drmrpc readproc
+    group system graphics drmrpc readproc wakelock
     capabilities SYS_NICE
     onrestart restart --only-if-running zygote
-    task_profiles HighPerformance
+    task_profiles MaxPerformance
+    priority -15
+    ioprio be 0
+    rlimit rtprio 50 50
+    rlimit nice 35 35
