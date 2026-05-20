@@ -1,4 +1,10 @@
 service gpu /system/bin/gpuservice
     class core
     user gpu_service
-    group graphics readtracefs
+    group graphics readtracefs drmrpc
+    capabilities SYS_NICE
+    task_profiles MaxPerformance
+    priority -10
+    rlimit nice 30 30
+    ioprio be 0
+    rlimit rtprio 40 40
